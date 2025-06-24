@@ -1,0 +1,342 @@
+[gd_scene load_steps=25 format=3 uid="uid://crycjqxkuy6ge"]
+
+[ext_resource type="Script" path="res://Main_Scene.gd" id="1_2blex"]
+[ext_resource type="Texture2D" uid="uid://bl37blcp4lc2u" path="res://outer spacefinal.png" id="2_r4tuy"]
+[ext_resource type="Texture2D" uid="uid://mvklkc87278c" path="res://Spaceshippro.png" id="3_md7s2"]
+[ext_resource type="Script" path="res://Ship_Movement.gd" id="4_55hp3"]
+[ext_resource type="VideoStream" path="res://Untitledpopop.ogv" id="5_jgob8"]
+[ext_resource type="Texture2D" uid="uid://ci3wgg7g7fmbi" path="res://New Projectpppp.png" id="6_1nxwy"]
+[ext_resource type="Script" path="res://CPUParticles2D.gd" id="7_egnt7"]
+[ext_resource type="Script" path="res://UI.gd" id="8_2lokc"]
+[ext_resource type="Texture2D" uid="uid://d1sgblhqpy1a0" path="res://control.png" id="10_mktb6"]
+[ext_resource type="Texture2D" uid="uid://b1kxpvtpi5d2i" path="res://Controls.png" id="11_we6qg"]
+[ext_resource type="Texture2D" uid="uid://22mgnq85j3h6" path="res://next.png" id="12_gp8qw"]
+[ext_resource type="Texture2D" uid="uid://vftsnsvh7jk2" path="res://Newtons first law.png" id="13_dsvuo"]
+[ext_resource type="Texture2D" uid="uid://4ib6x7dwyefp" path="res://inertia.png" id="14_f50hf"]
+[ext_resource type="Texture2D" uid="uid://bkjthv6cyd8da" path="res://forever final.png" id="15_nmj60"]
+[ext_resource type="Texture2D" uid="uid://bjrl8lcbgbf" path="res://stop.png" id="16_3bvxq"]
+[ext_resource type="Texture2D" uid="uid://cf5qaqu7vbe" path="res://lab.png" id="17_evkxl"]
+[ext_resource type="Texture2D" uid="uid://bvp7hglvj4o2u" path="res://end.png" id="18_nbui0"]
+[ext_resource type="Texture2D" uid="uid://ce4dmxpakgc3r" path="res://bar-2.png" id="20_jeh3d"]
+[ext_resource type="Texture2D" uid="uid://bvwb4o1ha0fx0" path="res://redddoott.png" id="21_0bsvh"]
+[ext_resource type="FontFile" uid="uid://c03wkq0prq1tj" path="res://square.ttf" id="21_4pn7t"]
+[ext_resource type="Texture2D" uid="uid://b31h85cbhpnfv" path="res://dotted-2.png" id="22_ry4wj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_35lxg"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_66bhb"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w80bl"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[node name="Main_Scene" type="Node2D"]
+position = Vector2(-7, -7)
+script = ExtResource("1_2blex")
+
+[node name="Background" type="ParallaxBackground" parent="."]
+layer = -90
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="Background"]
+motion_mirroring = Vector2(2400, 1600)
+
+[node name="Stars" type="Sprite2D" parent="Background/ParallaxLayer"]
+modulate = Color(1, 1, 1, 0.45098)
+scale = Vector2(1.30625, 1.50556)
+texture = ExtResource("2_r4tuy")
+centered = false
+region_rect = Rect2(2.08165e-12, 2.08165e-12, 2460, 1600)
+
+[node name="Player_Controller" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 2460.0
+offset_bottom = 1600.0
+
+[node name="Spaceship" type="Sprite2D" parent="Player_Controller"]
+light_mask = 2
+visibility_layer = 2
+z_index = 1
+position = Vector2(1237, 810)
+scale = Vector2(0.403704, 0.403704)
+texture = ExtResource("3_md7s2")
+script = ExtResource("4_55hp3")
+
+[node name="Fire" type="VideoStreamPlayer" parent="Player_Controller/Spaceship"]
+visible = false
+z_index = -1
+offset_left = -346.789
+offset_top = -208.073
+offset_right = 741.211
+offset_bottom = 1711.93
+rotation = 1.5708
+scale = Vector2(0.4, 0.4)
+stream = ExtResource("5_jgob8")
+autoplay = true
+loop = true
+
+[node name="Dotted_Line" type="CPUParticles2D" parent="Player_Controller/Spaceship"]
+modulate = Color(1, 1, 1, 0)
+z_index = -1
+texture_filter = 2
+use_parent_material = true
+position = Vector2(0, 0.000488281)
+scale = Vector2(916.568, -0.500775)
+amount = 200
+lifetime = 60.0
+texture = ExtResource("6_1nxwy")
+gravity = Vector2(2.08165e-12, 2.08165e-12)
+script = ExtResource("7_egnt7")
+
+[node name="Camera" type="Camera2D" parent="Player_Controller/Spaceship"]
+scale = Vector2(90, 90)
+limit_smoothed = true
+position_smoothing_speed = 90.0
+rotation_smoothing_speed = 0.0
+editor_draw_limits = true
+
+[node name="UI" type="CanvasLayer" parent="Player_Controller/Spaceship"]
+script = ExtResource("8_2lokc")
+
+[node name="Messages" type="Control" parent="Player_Controller/Spaceship/UI"]
+layout_mode = 3
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="Controls1" type="Sprite2D" parent="Player_Controller/Spaceship/UI/Messages"]
+visible = false
+position = Vector2(-458, -203)
+scale = Vector2(0.567, 0.567)
+texture = ExtResource("11_we6qg")
+
+[node name="TextureButton" type="TextureButton" parent="Player_Controller/Spaceship/UI/Messages/Controls1"]
+offset_left = 712.521
+offset_top = 266.314
+offset_right = 1792.52
+offset_bottom = 1346.31
+scale = Vector2(0.1, 0.1)
+texture_normal = ExtResource("12_gp8qw")
+
+[node name="NewtonsFirstLaw2" type="Sprite2D" parent="Player_Controller/Spaceship/UI/Messages"]
+visible = false
+position = Vector2(-458, -203)
+scale = Vector2(0.567, 0.567)
+texture = ExtResource("13_dsvuo")
+
+[node name="TextureButton" type="TextureButton" parent="Player_Controller/Spaceship/UI/Messages/NewtonsFirstLaw2"]
+offset_left = 712.521
+offset_top = 266.314
+offset_right = 1792.52
+offset_bottom = 1346.31
+scale = Vector2(0.1, 0.1)
+texture_normal = ExtResource("12_gp8qw")
+
+[node name="Inertia3" type="Sprite2D" parent="Player_Controller/Spaceship/UI/Messages"]
+visible = false
+position = Vector2(-458, -203)
+scale = Vector2(0.567, 0.567)
+texture = ExtResource("14_f50hf")
+
+[node name="TextureButton" type="TextureButton" parent="Player_Controller/Spaceship/UI/Messages/Inertia3"]
+offset_left = 712.521
+offset_top = 266.314
+offset_right = 1792.52
+offset_bottom = 1346.31
+scale = Vector2(0.1, 0.1)
+texture_normal = ExtResource("12_gp8qw")
+
+[node name="Forever4" type="Sprite2D" parent="Player_Controller/Spaceship/UI/Messages"]
+visible = false
+position = Vector2(-458, -203)
+scale = Vector2(0.567, 0.567)
+texture = ExtResource("15_nmj60")
+
+[node name="TextureButton" type="TextureButton" parent="Player_Controller/Spaceship/UI/Messages/Forever4"]
+offset_left = 717.813
+offset_top = -368.607
+offset_right = 1797.81
+offset_bottom = 711.393
+scale = Vector2(0.1, 0.1)
+texture_normal = ExtResource("12_gp8qw")
+
+[node name="Stop5" type="Sprite2D" parent="Player_Controller/Spaceship/UI/Messages"]
+visible = false
+position = Vector2(-458, -203)
+scale = Vector2(0.567, 0.567)
+texture = ExtResource("16_3bvxq")
+
+[node name="TextureButton" type="TextureButton" parent="Player_Controller/Spaceship/UI/Messages/Stop5"]
+offset_left = 712.521
+offset_top = 266.314
+offset_right = 1792.52
+offset_bottom = 1346.31
+scale = Vector2(0.1, 0.1)
+texture_normal = ExtResource("12_gp8qw")
+
+[node name="Lab6" type="Sprite2D" parent="Player_Controller/Spaceship/UI/Messages"]
+visible = false
+position = Vector2(-458, -203)
+scale = Vector2(0.567, 0.567)
+texture = ExtResource("17_evkxl")
+
+[node name="TextureButton" type="TextureButton" parent="Player_Controller/Spaceship/UI/Messages/Lab6"]
+offset_left = 712.521
+offset_top = 266.314
+offset_right = 1792.52
+offset_bottom = 1346.31
+scale = Vector2(0.1, 0.1)
+texture_normal = ExtResource("12_gp8qw")
+
+[node name="End7" type="Sprite2D" parent="Player_Controller/Spaceship/UI/Messages"]
+visible = false
+position = Vector2(-458, -203)
+scale = Vector2(0.567, 0.567)
+texture = ExtResource("18_nbui0")
+
+[node name="TextureButton" type="TextureButton" parent="Player_Controller/Spaceship/UI/Messages/End7"]
+offset_left = 712.521
+offset_top = 266.314
+offset_right = 1792.52
+offset_bottom = 1346.31
+scale = Vector2(0.1, 0.1)
+texture_normal = ExtResource("12_gp8qw")
+
+[node name="Control" type="Control" parent="Player_Controller/Spaceship/UI"]
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -51.0
+offset_top = -49.0
+offset_right = 51.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Label" type="Label" parent="Player_Controller/Spaceship/UI/Control"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -162.5
+offset_top = -39.0
+offset_right = 162.5
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Velocity: "
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="Player_Controller/Spaceship/UI"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 122.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/focus = SubResource("StyleBoxFlat_35lxg")
+flat = true
+
+[node name="Control2" type="Control" parent="Player_Controller/Spaceship/UI"]
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -235.5
+offset_right = 235.5
+offset_bottom = 98.0
+grow_horizontal = 2
+
+[node name="Bar" type="Sprite2D" parent="Player_Controller/Spaceship/UI/Control2"]
+modulate = Color(0.414066, 0.414066, 0.414066, 0.505882)
+position = Vector2(235.5, 67)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("20_jeh3d")
+
+[node name="Control" type="Sprite2D" parent="Player_Controller/Spaceship/UI/Control2"]
+modulate = Color(1, 1, 1, 0.388235)
+position = Vector2(328.5, 68)
+texture = ExtResource("10_mktb6")
+
+[node name="Control3" type="Sprite2D" parent="Player_Controller/Spaceship/UI/Control2"]
+modulate = Color(1, 1, 1, 0.388235)
+position = Vector2(235.5, 68)
+texture = ExtResource("10_mktb6")
+
+[node name="Control2" type="Sprite2D" parent="Player_Controller/Spaceship/UI/Control2"]
+modulate = Color(1, 1, 1, 0.388235)
+position = Vector2(142.5, 68)
+texture = ExtResource("10_mktb6")
+
+[node name="in" type="Button" parent="Player_Controller/Spaceship/UI/Control2"]
+layout_mode = 0
+offset_left = 97.0
+offset_right = 189.0
+offset_bottom = 132.0
+theme_override_colors/font_hover_color = Color(0.396889, 0.396889, 0.396889, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 90
+theme_override_styles/focus = SubResource("StyleBoxFlat_66bhb")
+text = "+"
+flat = true
+expand_icon = true
+
+[node name="out" type="Button" parent="Player_Controller/Spaceship/UI/Control2"]
+layout_mode = 0
+offset_left = 193.0
+offset_top = -64.0
+offset_right = 279.0
+offset_bottom = 161.0
+theme_override_colors/font_hover_color = Color(0.396078, 0.396078, 0.396078, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("21_4pn7t")
+theme_override_font_sizes/font_size = 84
+theme_override_styles/focus = SubResource("StyleBoxFlat_w80bl")
+text = "_"
+flat = true
+
+[node name="Line_Button" type="TextureButton" parent="Player_Controller/Spaceship/UI/Control2"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 29.0
+offset_top = 4.0
+offset_right = 157.0
+offset_bottom = 132.0
+grow_horizontal = 2
+toggle_mode = true
+texture_normal = ExtResource("21_0bsvh")
+texture_pressed = ExtResource("22_ry4wj")
+
+[connection signal="pressed" from="Player_Controller/Spaceship/UI/Messages/Controls1/TextureButton" to="Player_Controller/Spaceship/UI" method="_on_texture_button_pressed"]
+[connection signal="pressed" from="Player_Controller/Spaceship/UI/Messages/Controls1/TextureButton" to="Player_Controller/Spaceship/UI" method="pressed1"]
+[connection signal="pressed" from="Player_Controller/Spaceship/UI/Messages/NewtonsFirstLaw2/TextureButton" to="." method="_on_texture_button2_pressed"]
+[connection signal="pressed" from="Player_Controller/Spaceship/UI/Messages/NewtonsFirstLaw2/TextureButton" to="Player_Controller/Spaceship/UI" method="_on_texture_button_pressed"]
+[connection signal="pressed" from="Player_Controller/Spaceship/UI/Messages/NewtonsFirstLaw2/TextureButton" to="Player_Controller/Spaceship/UI" method="pressed2"]
+[connection signal="pressed" from="Player_Controller/Spaceship/UI/Messages/Inertia3/TextureButton" to="Player_Controller/Spaceship/UI" method="pressed3"]
+[connection signal="pressed" from="Player_Controller/Spaceship/UI/Messages/Forever4/TextureButton" to="Player_Controller/Spaceship/UI" method="pressed4"]
+[connection signal="pressed" from="Player_Controller/Spaceship/UI/Messages/Stop5/TextureButton" to="Player_Controller/Spaceship/UI" method="pressed5"]
+[connection signal="pressed" from="Player_Controller/Spaceship/UI/Messages/Lab6/TextureButton" to="Player_Controller/Spaceship/UI" method="pressed6"]
+[connection signal="pressed" from="Player_Controller/Spaceship/UI/Messages/End7/TextureButton" to="Player_Controller/Spaceship/UI" method="pressed7"]
+[connection signal="button_down" from="Player_Controller/Spaceship/UI/Button" to="Player_Controller/Spaceship" method="_on_button_button_down"]
+[connection signal="button_up" from="Player_Controller/Spaceship/UI/Button" to="Player_Controller/Spaceship" method="_on_button_button_up"]
+[connection signal="button_down" from="Player_Controller/Spaceship/UI/Control2/in" to="." method="_on_button_2_button_down"]
+[connection signal="button_down" from="Player_Controller/Spaceship/UI/Control2/out" to="." method="_on_button_button_down"]
+[connection signal="mouse_entered" from="Player_Controller/Spaceship/UI/Control2/out" to="." method="_on_out_mouse_entered"]
+[connection signal="mouse_exited" from="Player_Controller/Spaceship/UI/Control2/out" to="." method="_on_out_mouse_exited"]
+[connection signal="pressed" from="Player_Controller/Spaceship/UI/Control2/Line_Button" to="Player_Controller/Spaceship/Dotted_Line" method="_on_texture_button_pressed"]
+[connection signal="pressed" from="Player_Controller/Spaceship/UI/Control2/Line_Button" to="Player_Controller/Spaceship/UI/Control2/Line_Button" method="_on_pressed"]
+[connection signal="pressed" from="Player_Controller/Spaceship/UI/Control2/Line_Button" to="Player_Controller/Spaceship/UI/Control2/Line_Button" method="toggle_visibility"]

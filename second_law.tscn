@@ -1,0 +1,277 @@
+[gd_scene load_steps=14 format=3 uid="uid://gyss5br5sw52"]
+
+[ext_resource type="Shader" path="res://uhijk.gdshader" id="1_bnmwp"]
+[ext_resource type="Script" path="res://second_law.gd" id="1_ntpen"]
+[ext_resource type="Texture2D" uid="uid://cirte3yu27ce8" path="res://outer.png" id="2_pknu8"]
+[ext_resource type="Script" path="res://ship_1.gd" id="3_144m1"]
+[ext_resource type="Texture2D" uid="uid://bjthd3p8e5jc7" path="res://sailboat.png" id="5_6yhaf"]
+[ext_resource type="Script" path="res://ship_2.gd" id="6_b16df"]
+[ext_resource type="Texture2D" uid="uid://b6yj85uminom1" path="res://play-button-2-2.png" id="6_i70xm"]
+[ext_resource type="Texture2D" uid="uid://caq035roqf07l" path="res://sailboatr.png" id="7_2xlqm"]
+[ext_resource type="Texture2D" uid="uid://cpxvjiobk4y77" path="res://redo.png" id="7_w82q8"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nv7l0"]
+shader = ExtResource("1_bnmwp")
+shader_parameter/color = Color(0, 0.404453, 0.8184, 1)
+shader_parameter/frequency = 6.0
+shader_parameter/compress = 1.0
+shader_parameter/add_light = 0.0
+shader_parameter/scale = 1.0
+shader_parameter/speed = 0.999978
+shader_parameter/x_angle = 0.47
+shader_parameter/y_angle = 1.57
+shader_parameter/base_alpha = 0.8
+shader_parameter/refraction_ratio = 15.8
+shader_parameter/clear = 1.0
+shader_parameter/surf_sinpowder = 8.0
+shader_parameter/surf_speed = 1.0
+shader_parameter/surf_angle = -1.57
+shader_parameter/surf_magnitude = 0.05
+shader_parameter/s11 = 5.22
+shader_parameter/sinpowder = 8.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1y4gc"]
+radius = 255.441
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3ka2a"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gg5ov"]
+size = Vector2(196, 1255)
+
+[node name="Second Law" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ntpen")
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 55.0
+offset_top = 65.0
+offset_right = 2803.0
+offset_bottom = 1226.0
+color = Color(0.25098, 0.113725, 1, 1)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_nv7l0")
+layout_mode = 0
+offset_left = 76.0
+offset_top = 59.0
+offset_right = 2800.0
+offset_bottom = 1225.0
+
+[node name="ColorRect3" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 2586.0
+offset_top = 65.0
+offset_right = 2799.0
+offset_bottom = 1220.0
+color = Color(1, 1, 1, 0.258824)
+
+[node name="Outer" type="Sprite2D" parent="."]
+position = Vector2(1425, 645)
+texture = ExtResource("2_pknu8")
+
+[node name="Ship 1" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 232.0
+offset_top = 375.0
+offset_right = 574.0
+offset_bottom = 498.0
+script = ExtResource("3_144m1")
+
+[node name="Sprite2D" type="Sprite2D" parent="Ship 1"]
+scale = Vector2(0.21, 0.21)
+texture = ExtResource("5_6yhaf")
+
+[node name="Area2D" type="Area2D" parent="Ship 1/Sprite2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ship 1/Sprite2D/Area2D"]
+shape = SubResource("CircleShape2D_1y4gc")
+
+[node name="m1" type="Label" parent="."]
+layout_mode = 0
+offset_left = 1042.0
+offset_top = 1407.0
+offset_right = 1270.0
+offset_bottom = 1434.0
+text = "0KG"
+
+[node name="a1" type="Label" parent="."]
+layout_mode = 0
+offset_left = 1042.0
+offset_top = 1491.0
+offset_right = 1270.0
+offset_bottom = 1518.0
+text = "0m/s²"
+
+[node name="f1" type="Label" parent="."]
+layout_mode = 0
+offset_left = 131.0
+offset_top = 1573.0
+offset_right = 1076.0
+offset_bottom = 1615.0
+theme_override_font_sizes/font_size = 30
+text = "Force: 0N"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="T1" type="Label" parent="."]
+layout_mode = 0
+offset_left = 123.0
+offset_top = 1275.0
+offset_right = 1090.0
+offset_bottom = 1358.0
+theme_override_font_sizes/font_size = 45
+text = "Yellow Boat
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Mass1" type="HSlider" parent="."]
+layout_mode = 0
+offset_left = 121.0
+offset_top = 1402.0
+offset_right = 1011.0
+offset_bottom = 1434.0
+min_value = 50.0
+value = 50.0
+
+[node name="Acceleration1" type="HSlider" parent="."]
+layout_mode = 0
+offset_left = 121.0
+offset_top = 1487.0
+offset_right = 1011.0
+offset_bottom = 1519.0
+min_value = 1.0
+max_value = 20.0
+value = 1.0
+
+[node name="Ship 2" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 232.0
+offset_top = 887.0
+offset_right = 574.0
+offset_bottom = 1010.0
+script = ExtResource("6_b16df")
+
+[node name="Sprite2D" type="Sprite2D" parent="Ship 2"]
+scale = Vector2(0.21, 0.21)
+texture = ExtResource("7_2xlqm")
+
+[node name="Area2D" type="Area2D" parent="Ship 2/Sprite2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ship 2/Sprite2D/Area2D"]
+shape = SubResource("CircleShape2D_1y4gc")
+
+[node name="m2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 2251.0
+offset_top = 1407.0
+offset_right = 2479.0
+offset_bottom = 1434.0
+text = "0KG"
+
+[node name="a2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 2251.0
+offset_top = 1491.0
+offset_right = 2479.0
+offset_bottom = 1518.0
+text = "0m/s²"
+
+[node name="f2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 1340.0
+offset_top = 1573.0
+offset_right = 2285.0
+offset_bottom = 1615.0
+theme_override_font_sizes/font_size = 30
+text = "Force: 0N"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="T2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 1332.0
+offset_top = 1275.0
+offset_right = 2299.0
+offset_bottom = 1358.0
+theme_override_font_sizes/font_size = 45
+text = "Red Boat
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Mass2" type="HSlider" parent="."]
+layout_mode = 0
+offset_left = 1330.0
+offset_top = 1402.0
+offset_right = 2220.0
+offset_bottom = 1434.0
+min_value = 50.0
+value = 50.0
+
+[node name="Acceleration2" type="HSlider" parent="."]
+layout_mode = 0
+offset_left = 1330.0
+offset_top = 1487.0
+offset_right = 2220.0
+offset_bottom = 1519.0
+min_value = 1.0
+max_value = 20.0
+value = 1.0
+
+[node name="Play" type="Button" parent="."]
+layout_mode = 0
+offset_left = 2652.0
+offset_top = 1275.0
+offset_right = 2809.0
+offset_bottom = 1432.0
+theme_override_styles/focus = SubResource("StyleBoxFlat_3ka2a")
+icon = ExtResource("6_i70xm")
+flat = true
+expand_icon = true
+
+[node name="Reset" type="Button" parent="."]
+layout_mode = 0
+offset_left = 2648.0
+offset_top = 1459.0
+offset_right = 2839.0
+offset_bottom = 1620.0
+icon = ExtResource("7_w82q8")
+flat = true
+expand_icon = true
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(2789, 631.5)
+shape = SubResource("RectangleShape2D_gg5ov")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -1300.0
+offset_top = -461.0
+offset_right = 1632.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[connection signal="value_changed" from="Mass1" to="Ship 1" method="_on_mass_1_value_changed"]
+[connection signal="value_changed" from="Acceleration1" to="Ship 1" method="_on_acceleration_1_value_changed"]
+[connection signal="value_changed" from="Mass2" to="Ship 2" method="_on_mass_2_value_changed"]
+[connection signal="value_changed" from="Acceleration2" to="Ship 2" method="_on_acceleration_2_value_changed"]
+[connection signal="button_down" from="Play" to="Ship 1" method="_on_button_button_down"]
+[connection signal="button_down" from="Play" to="Ship 2" method="_on_play_button_down"]
+[connection signal="button_down" from="Reset" to="." method="_on_reset_button_down"]
+[connection signal="area_entered" from="Area2D" to="Ship 1" method="_on_area_2d_area_entered"]
+[connection signal="area_entered" from="Area2D" to="Ship 2" method="_on_area_2d_area_entered"]

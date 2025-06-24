@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://eihrjsv5ho7w"]
+
+[ext_resource type="PackedScene" uid="uid://dr8c84ork4bm" path="res://ship.glb" id="1_ae5su"]
+[ext_resource type="Shader" uid="uid://bxp0l2wcvxrnl" path="res://fireshader.tres" id="2_vi3wl"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i177k"]
+render_priority = 0
+shader = ExtResource("2_vi3wl")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_mv863"]
+gravity = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
+
+[sub_resource type="QuadMesh" id="QuadMesh_0kjn2"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="ship" parent="." instance=ExtResource("1_ae5su")]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.03738, 6.25532)
+
+[node name="VFX" type="Node3D" parent="."]
+
+[node name="Flames" type="GPUParticles3D" parent="VFX"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.78317, 0)
+material_override = SubResource("ShaderMaterial_i177k")
+lifetime = 5.0
+process_material = SubResource("ParticleProcessMaterial_mv863")
+draw_pass_1 = SubResource("QuadMesh_0kjn2")

@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://b2jnmkn6d1x6q"]
+
+[ext_resource type="Shader" path="res://BOAT3d.gdshader" id="1_837tf"]
+
+[sub_resource type="Environment" id="Environment_conkh"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3qkbq"]
+render_priority = 0
+shader = ExtResource("1_837tf")
+shader_parameter/color = null
+shader_parameter/deep_water = null
+shader_parameter/roughness = 0.1
+shader_parameter/metallic = 0.0
+shader_parameter/speed = 0.02
+shader_parameter/beer_law_factor = 2.0
+shader_parameter/_distance = 50.0
+shader_parameter/edge_color = null
+shader_parameter/edge_scale = 0.1
+shader_parameter/near = 0.1
+shader_parameter/far = 100.0
+shader_parameter/wave_direction = Vector2(2, 0)
+shader_parameter/wave_direction2 = Vector2(0, 1)
+shader_parameter/time_scale = 0.025
+shader_parameter/height_scale = 0.15
+shader_parameter/noise_scale = 10.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_ti84c"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.06943)
+environment = SubResource("Environment_conkh")
+current = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.538845)
+material_override = SubResource("ShaderMaterial_3qkbq")
+mesh = SubResource("QuadMesh_ti84c")

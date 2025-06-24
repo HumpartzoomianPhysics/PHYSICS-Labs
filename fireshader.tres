@@ -1,0 +1,41 @@
+[gd_resource type="VisualShader" load_steps=4 format=3 uid="uid://bxp0l2wcvxrnl"]
+
+[sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_5ksvn"]
+parameter_name = "Main_Texture"
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_s3cax"]
+output_port_for_preview = 0
+source = 5
+texture_type = 1
+
+[sub_resource type="VisualShaderNodeVectorDecompose" id="VisualShaderNodeVectorDecompose_r6qtf"]
+default_input_values = [0, Quaternion(0, 0, 0, 0)]
+op_type = 2
+
+[resource]
+code = "shader_type spatial;
+render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_lambert, specular_schlick_ggx;
+
+uniform sampler2D Main_Texture;
+
+
+
+void fragment() {
+	vec4 n_out3p0;
+// Texture2D:3
+	n_out3p0 = texture(Main_Texture, UV);
+
+
+// Output:0
+	ALBEDO = vec3(n_out3p0.xyz);
+
+
+}
+"
+nodes/fragment/2/node = SubResource("VisualShaderNodeTexture2DParameter_5ksvn")
+nodes/fragment/2/position = Vector2(-780.2, 496.959)
+nodes/fragment/3/node = SubResource("VisualShaderNodeTexture_s3cax")
+nodes/fragment/3/position = Vector2(-160, 500)
+nodes/fragment/4/node = SubResource("VisualShaderNodeVectorDecompose_r6qtf")
+nodes/fragment/4/position = Vector2(307.526, 763.947)
+nodes/fragment/connections = PackedInt32Array(2, 0, 3, 2, 3, 0, 0, 0, 3, 0, 4, 0)

@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://jc6x2p1x3djc"]
+
+[ext_resource type="Texture2D" uid="uid://1nknwobthi31" path="res://icon.svg" id="1_3isxj"]
+[ext_resource type="Script" path="res://node_2d.gd" id="1_di8s1"]
+[ext_resource type="AudioStream" uid="uid://dja5ksmn2djmw" path="res://sinal slow.wav" id="3_8ow8t"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ix1ww"]
+radius = 65.0
+height = 134.0
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_di8s1")
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="RigidBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D"]
+texture = ExtResource("1_3isxj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+shape = SubResource("CapsuleShape2D_ix1ww")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-164, 294)
+texture = ExtResource("1_3isxj")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_8ow8t")

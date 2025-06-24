@@ -1,0 +1,167 @@
+[gd_scene load_steps=11 format=3 uid="uid://4yjw3mxb75io"]
+
+[ext_resource type="Script" path="res://Title_Screen.gd" id="1_sp3d3"]
+[ext_resource type="VideoStream" path="res://fly-stay.ogv" id="2_73qtr"]
+[ext_resource type="VideoStream" path="res://fly-in.ogv" id="3_j2fco"]
+[ext_resource type="Texture2D" uid="uid://bl37blcp4lc2u" path="res://outer spacefinal.png" id="3_uj17p"]
+[ext_resource type="Texture2D" uid="uid://bekt67daaqeaq" path="res://coollogo_com-69191361-3.png" id="3_ullcx"]
+[ext_resource type="Texture2D" uid="uid://bv3mkpfyt6v8m" path="res://title.png" id="4_thfoh"]
+
+[sub_resource type="Animation" id="Animation_my8jp"]
+resource_name = "Fade"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player_Controller/UI/Transition/ColorRect2:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Player_Controller/UI/Transition/ColorRect2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Transition/ColorRect2:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_hitej"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Transition/ColorRect2:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_181dx"]
+resource_name = "in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player_Controller/UI/Transition/ColorRect2:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Player_Controller/UI/Transition/ColorRect2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8hfpj"]
+_data = {
+"Fade": SubResource("Animation_my8jp"),
+"RESET": SubResource("Animation_hitej"),
+"in": SubResource("Animation_181dx")
+}
+
+[node name="TitleScreen" type="Node2D"]
+script = ExtResource("1_sp3d3")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(2460, 1600)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+modulate = Color(1, 1, 1, 0.45098)
+position = Vector2(1585.5, 1039.5)
+scale = Vector2(1.65365, 1.91759)
+texture = ExtResource("3_uj17p")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = 1039.0
+offset_top = -11.0
+offset_right = 1794.0
+offset_bottom = 611.0
+color = Color(0, 0, 0, 1)
+
+[node name="ShipLoop" type="VideoStreamPlayer" parent="."]
+offset_left = 1039.0
+offset_top = 326.0
+offset_right = 2127.0
+offset_bottom = 2246.0
+scale = Vector2(0.72, 0.72)
+stream = ExtResource("2_73qtr")
+autoplay = true
+loop = true
+
+[node name="ShipFlyIn" type="VideoStreamPlayer" parent="."]
+offset_left = 1039.0
+offset_top = 326.0
+offset_right = 2127.0
+offset_bottom = 2246.0
+scale = Vector2(0.72, 0.72)
+stream = ExtResource("3_j2fco")
+autoplay = true
+
+[node name="Click Anywhere Text" type="Sprite2D" parent="."]
+position = Vector2(1377, 1496)
+scale = Vector2(2.3855, 2.54464)
+texture = ExtResource("3_ullcx")
+
+[node name="Title" type="Sprite2D" parent="."]
+position = Vector2(1429, 189)
+scale = Vector2(1.44766, 1.47639)
+texture = ExtResource("4_thfoh")
+
+[node name="Transition" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_8hfpj")
+}
+
+[node name="ColorRect2" type="ColorRect" parent="Transition"]
+self_modulate = Color(0, 0, 0, 0)
+offset_right = 3185.0
+offset_bottom = 2106.0
+color = Color(0, 0, 0, 1)
+
+[node name="Scene_Switcher" type="Button" parent="."]
+modulate = Color(1, 1, 1, 0)
+offset_right = 3282.0
+offset_bottom = 2358.0
+
+[connection signal="animation_finished" from="Transition" to="." method="_on_transition_animation_finished"]
+[connection signal="button_down" from="Scene_Switcher" to="." method="_on_button_button_down"]
+[connection signal="pressed" from="Scene_Switcher" to="." method="_on_scene_switcher_pressed"]
+[connection signal="pressed" from="Scene_Switcher" to="Scene_Switcher" method="_on_pressed"]

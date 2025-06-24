@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://yoeqx7u1yf5u"]
+
+[ext_resource type="Texture2D" uid="uid://1nknwobthi31" path="res://icon.svg" id="1_qlqew"]
+[ext_resource type="Script" path="res://CharacterBody3Dp.gd" id="2_jcty7"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_gvefd"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ju16s"]
+size = Vector3(5.23975, 1, 4.15381)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+
+[node name="Sprite3D" type="Sprite3D" parent="RigidBody3D"]
+texture = ExtResource("1_qlqew")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+shape = SubResource("SphereShape3D_gvefd")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(0.940068, 0.340987, 0, -0.340987, 0.940068, 0, 0, 0, 1, 2.18843, -2.75242, 1.5769)
+shape = SubResource("BoxShape3D_ju16s")
+
+[node name="Sprite3D" type="Sprite3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.75249, 0)
+texture = ExtResource("1_qlqew")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.979477, 0.201557, 0, -0.201557, 0.979477, -3.19783, 0, 9.72564)
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+script = ExtResource("2_jcty7")

@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://cyrrql76jki5t"]
+
+[ext_resource type="Script" path="res://PlayerTrail.gd" id="1_b0whe"]
+
+[sub_resource type="Curve" id="Curve_gcad1"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="PlayerTrail" type="Line2D"]
+show_behind_parent = true
+width_curve = SubResource("Curve_gcad1")
+texture_mode = 1
+script = ExtResource("1_b0whe")

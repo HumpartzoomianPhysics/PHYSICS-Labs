@@ -1,0 +1,308 @@
+[gd_scene load_steps=23 format=3 uid="uid://7heoupf2dvny"]
+
+[ext_resource type="Texture2D" uid="uid://mvklkc87278c" path="res://Spaceshippro.png" id="1_hcjmi"]
+[ext_resource type="Script" path="res://Main_Scene.gd" id="1_ltcmv"]
+[ext_resource type="Texture2D" uid="uid://bl37blcp4lc2u" path="res://outer spacefinal.png" id="1_n63d7"]
+[ext_resource type="Script" path="res://Ship_Movement.gd" id="2_osiq4"]
+[ext_resource type="Texture2D" uid="uid://ci3wgg7g7fmbi" path="res://New Projectpppp.png" id="4_1btqe"]
+[ext_resource type="VideoStream" path="res://Untitledpopop.ogv" id="4_th7op"]
+[ext_resource type="Script" path="res://CPUParticles2D.gd" id="6_bwmw3"]
+[ext_resource type="Texture2D" uid="uid://bsk0hg4bbllpe" path="res://off control.png" id="7_41nlj"]
+[ext_resource type="Script" path="res://UI.gd" id="8_34i1p"]
+[ext_resource type="Texture2D" uid="uid://d1sgblhqpy1a0" path="res://control.png" id="8_86wcg"]
+[ext_resource type="Texture2D" uid="uid://b1kxpvtpi5d2i" path="res://Controls.png" id="11_mk64a"]
+[ext_resource type="Texture2D" uid="uid://vftsnsvh7jk2" path="res://Newtons first law.png" id="12_1vb1u"]
+[ext_resource type="Texture2D" uid="uid://22mgnq85j3h6" path="res://next.png" id="12_3l2rc"]
+[ext_resource type="Texture2D" uid="uid://4ib6x7dwyefp" path="res://inertia.png" id="13_5wcn4"]
+[ext_resource type="Texture2D" uid="uid://bkjthv6cyd8da" path="res://forever final.png" id="15_i0exx"]
+[ext_resource type="Texture2D" uid="uid://bjrl8lcbgbf" path="res://stop.png" id="15_n4i2w"]
+[ext_resource type="Texture2D" uid="uid://cf5qaqu7vbe" path="res://lab.png" id="16_pv6g1"]
+[ext_resource type="Texture2D" uid="uid://bvp7hglvj4o2u" path="res://end.png" id="17_rufu4"]
+
+[sub_resource type="Animation" id="Animation_my8jp"]
+resource_name = "Fade"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player_Controller/UI/Transition/ColorRect2:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Player_Controller/UI/Transition/ColorRect2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Transition/ColorRect2:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_hitej"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Transition/ColorRect2:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_181dx"]
+resource_name = "in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player_Controller/UI/Transition/ColorRect2:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Player_Controller/UI/Transition/ColorRect2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8hfpj"]
+_data = {
+"Fade": SubResource("Animation_my8jp"),
+"RESET": SubResource("Animation_hitej"),
+"in": SubResource("Animation_181dx")
+}
+
+[node name="Main_Scene" type="Node2D"]
+position = Vector2(-7, -7)
+script = ExtResource("1_ltcmv")
+
+[node name="Background" type="ParallaxBackground" parent="."]
+layer = -90
+scroll_ignore_camera_zoom = true
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="Background"]
+motion_mirroring = Vector2(2460, 1600)
+
+[node name="Stars" type="Sprite2D" parent="Background/ParallaxLayer"]
+modulate = Color(1, 1, 1, 0.45098)
+scale = Vector2(1.30625, 1.50556)
+texture = ExtResource("1_n63d7")
+centered = false
+region_rect = Rect2(2.08165e-12, 2.08165e-12, 2460, 1600)
+
+[node name="Player_Controller" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 2460.0
+offset_bottom = 1600.0
+
+[node name="Spaceship" type="Sprite2D" parent="Player_Controller"]
+light_mask = 2
+visibility_layer = 2
+z_index = 1
+position = Vector2(1237, 810)
+scale = Vector2(0.403704, 0.403704)
+texture = ExtResource("1_hcjmi")
+script = ExtResource("2_osiq4")
+
+[node name="Fire" type="VideoStreamPlayer" parent="Player_Controller/Spaceship"]
+visible = false
+z_index = -1
+offset_left = -346.789
+offset_top = -208.073
+offset_right = 741.211
+offset_bottom = 1711.93
+rotation = 1.5708
+scale = Vector2(0.4, 0.4)
+stream = ExtResource("4_th7op")
+autoplay = true
+loop = true
+
+[node name="Dotted_Line" type="CPUParticles2D" parent="Player_Controller/Spaceship"]
+modulate = Color(1, 1, 1, 0)
+z_index = -1
+texture_filter = 2
+use_parent_material = true
+position = Vector2(-32.202, 4.95459)
+scale = Vector2(916.568, -0.500775)
+amount = 200
+lifetime = 60.0
+texture = ExtResource("4_1btqe")
+gravity = Vector2(2.08165e-12, 2.08165e-12)
+script = ExtResource("6_bwmw3")
+
+[node name="Camera" type="Camera2D" parent="Player_Controller/Spaceship"]
+scale = Vector2(90, 90)
+limit_smoothed = true
+position_smoothing_speed = 50.0
+rotation_smoothing_speed = 50.0
+editor_draw_limits = true
+
+[node name="UI" type="CanvasLayer" parent="Player_Controller"]
+script = ExtResource("8_34i1p")
+
+[node name="Line_Button" type="TextureButton" parent="Player_Controller/UI"]
+offset_left = 2745.0
+offset_top = 12.0
+offset_right = 2873.0
+offset_bottom = 140.0
+toggle_mode = true
+texture_normal = ExtResource("7_41nlj")
+texture_pressed = ExtResource("8_86wcg")
+
+[node name="Controls1" type="Sprite2D" parent="Player_Controller/UI"]
+position = Vector2(2372, 1437)
+scale = Vector2(0.567, 0.567)
+texture = ExtResource("11_mk64a")
+
+[node name="TextureButton" type="TextureButton" parent="Player_Controller/UI/Controls1"]
+offset_left = 712.521
+offset_top = 266.314
+offset_right = 1792.52
+offset_bottom = 1346.31
+scale = Vector2(0.1, 0.1)
+texture_normal = ExtResource("12_3l2rc")
+
+[node name="NewtonsFirstLaw2" type="Sprite2D" parent="Player_Controller/UI"]
+visible = false
+position = Vector2(2372, 1437)
+scale = Vector2(0.567, 0.567)
+texture = ExtResource("12_1vb1u")
+
+[node name="TextureButton" type="TextureButton" parent="Player_Controller/UI/NewtonsFirstLaw2"]
+offset_left = 712.521
+offset_top = 266.314
+offset_right = 1792.52
+offset_bottom = 1346.31
+scale = Vector2(0.1, 0.1)
+texture_normal = ExtResource("12_3l2rc")
+
+[node name="Inertia3" type="Sprite2D" parent="Player_Controller/UI"]
+visible = false
+position = Vector2(2372, 1437)
+scale = Vector2(0.567, 0.567)
+texture = ExtResource("13_5wcn4")
+
+[node name="TextureButton" type="TextureButton" parent="Player_Controller/UI/Inertia3"]
+offset_left = 712.521
+offset_top = 266.314
+offset_right = 1792.52
+offset_bottom = 1346.31
+scale = Vector2(0.1, 0.1)
+texture_normal = ExtResource("12_3l2rc")
+
+[node name="Forever4" type="Sprite2D" parent="Player_Controller/UI"]
+visible = false
+position = Vector2(2372, 1437)
+scale = Vector2(0.567, 0.567)
+texture = ExtResource("15_i0exx")
+
+[node name="TextureButton" type="TextureButton" parent="Player_Controller/UI/Forever4"]
+offset_left = 717.813
+offset_top = -368.607
+offset_right = 1797.81
+offset_bottom = 711.393
+scale = Vector2(0.1, 0.1)
+texture_normal = ExtResource("12_3l2rc")
+
+[node name="Stop5" type="Sprite2D" parent="Player_Controller/UI"]
+visible = false
+position = Vector2(2372, 1437)
+scale = Vector2(0.567, 0.567)
+texture = ExtResource("15_n4i2w")
+
+[node name="TextureButton" type="TextureButton" parent="Player_Controller/UI/Stop5"]
+offset_left = 712.521
+offset_top = 266.314
+offset_right = 1792.52
+offset_bottom = 1346.31
+scale = Vector2(0.1, 0.1)
+texture_normal = ExtResource("12_3l2rc")
+
+[node name="Lab6" type="Sprite2D" parent="Player_Controller/UI"]
+visible = false
+position = Vector2(2372, 1437)
+scale = Vector2(0.567, 0.567)
+texture = ExtResource("16_pv6g1")
+
+[node name="TextureButton" type="TextureButton" parent="Player_Controller/UI/Lab6"]
+offset_left = 712.521
+offset_top = 266.314
+offset_right = 1792.52
+offset_bottom = 1346.31
+scale = Vector2(0.1, 0.1)
+texture_normal = ExtResource("12_3l2rc")
+
+[node name="End7" type="Sprite2D" parent="Player_Controller/UI"]
+visible = false
+position = Vector2(2372, 1437)
+scale = Vector2(0.567, 0.567)
+texture = ExtResource("17_rufu4")
+
+[node name="TextureButton" type="TextureButton" parent="Player_Controller/UI/End7"]
+offset_left = 712.521
+offset_top = 266.314
+offset_right = 1792.52
+offset_bottom = 1346.31
+scale = Vector2(0.1, 0.1)
+texture_normal = ExtResource("12_3l2rc")
+
+[node name="Transition" type="AnimationPlayer" parent="Player_Controller/UI"]
+root_node = NodePath("../../..")
+libraries = {
+"": SubResource("AnimationLibrary_8hfpj")
+}
+
+[node name="ColorRect2" type="ColorRect" parent="Player_Controller/UI/Transition"]
+offset_right = 3185.0
+offset_bottom = 2106.0
+color = Color(0, 0, 0, 1)
+
+[connection signal="pressed" from="Player_Controller/UI/Line_Button" to="Player_Controller/Spaceship/Dotted_Line" method="_on_texture_button_pressed"]
+[connection signal="pressed" from="Player_Controller/UI/Line_Button" to="Player_Controller/UI/Line_Button" method="_on_pressed"]
+[connection signal="pressed" from="Player_Controller/UI/Line_Button" to="Player_Controller/UI/Line_Button" method="toggle_visibility"]
+[connection signal="pressed" from="Player_Controller/UI/Controls1/TextureButton" to="Player_Controller/UI" method="pressed1"]
+[connection signal="pressed" from="Player_Controller/UI/Controls1/TextureButton" to="Player_Controller/UI" method="_on_texture_button_pressed"]
+[connection signal="pressed" from="Player_Controller/UI/NewtonsFirstLaw2/TextureButton" to="." method="_on_texture_button2_pressed"]
+[connection signal="pressed" from="Player_Controller/UI/NewtonsFirstLaw2/TextureButton" to="Player_Controller/UI" method="pressed2"]
+[connection signal="pressed" from="Player_Controller/UI/NewtonsFirstLaw2/TextureButton" to="Player_Controller/UI" method="_on_texture_button_pressed"]
+[connection signal="pressed" from="Player_Controller/UI/Inertia3/TextureButton" to="Player_Controller/UI" method="pressed3"]
+[connection signal="pressed" from="Player_Controller/UI/Forever4/TextureButton" to="Player_Controller/UI" method="pressed4"]
+[connection signal="pressed" from="Player_Controller/UI/Stop5/TextureButton" to="Player_Controller/UI" method="pressed5"]
+[connection signal="pressed" from="Player_Controller/UI/Lab6/TextureButton" to="Player_Controller/UI" method="pressed6"]
+[connection signal="pressed" from="Player_Controller/UI/End7/TextureButton" to="Player_Controller/UI" method="pressed7"]

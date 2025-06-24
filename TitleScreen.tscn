@@ -1,0 +1,51 @@
+[gd_scene load_steps=5 format=3 uid="uid://dovhibtkup80w"]
+
+[ext_resource type="Texture2D" uid="uid://qjo6l66jhin3" path="res://coollogo_com-69191361-2.png" id="1_pqh7h"]
+[ext_resource type="Script" path="res://TitleScreen.gd" id="1_ruo5t"]
+[ext_resource type="Texture2D" uid="uid://dpbiu0st1syvx" path="res://coollogo_com-69191361-3.png" id="3_raesj"]
+[ext_resource type="PackedScene" uid="uid://dr8c84ork4bm" path="res://ship.glb" id="4_ns2m6"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ruo5t")
+
+[node name="ship" parent="." instance=ExtResource("4_ns2m6")]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 2945.0
+offset_bottom = 1738.0
+color = Color(0, 0, 0, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1444, 350)
+scale = Vector2(1.83929, 1.83929)
+texture = ExtResource("1_pqh7h")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1414, 1649)
+scale = Vector2(1.83929, 1.83929)
+texture = ExtResource("3_raesj")
+
+[node name="Node3D" type="Node3D" parent="."]
+
+[node name="StartButton" type="Button" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = -4.0
+offset_top = 8.0
+offset_right = 2941.0
+offset_bottom = 1746.0
+text = "hellloookfisfdc
+"
+
+[connection signal="button_down" from="StartButton" to="." method="_on_button_button_down"]
